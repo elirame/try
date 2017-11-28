@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Test Google Forms</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <div>
+            <div>
+                <strong>Test Google Form</strong>
+            </div>
+            <form id="form" target="_self" onsubmit="" action="">
+                <fieldset>
+			<label for="eliram">What's your eliram? *</label>
+		        <input id="eliram" type="text" name="eliram">
+                </fieldset>
+                <div style="width: 100%; display: block; float: right;">
+                    <button id="send" type="submit">
+                        Send
+                    </button>
+                </div>
+            </form>
+        </div>
+        <script type="text/javascript">
+            function postToGoogle() {
+                var eliram = $('#eliram').val();
+ 
+                $.ajax({
+                    url: "https://docs.google.com/forms/d/e/1FAIpQLSc53reapKADj2v_udA2ofJqIm1Tg4F84aWRl7WCasJquazCqw/formResponse",
+                    data: {"entry.920084698": eliram},
+                    type: "POST",
+                    dataType: "xml",
+                    statusCode: {
+                        0: function() {
+                            //Success message
+                        },
+                        200: function() {
+                            //Success Message
+                        }
+                    }
+                });
+            }
+             
+            $(document).ready(function(){
+                $('#form').submit(function() {
+                    postToGoogle();
+                    return false;
+                });
+            });
+        </script>
+    </body>
+</html>
